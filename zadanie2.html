@@ -3,42 +3,56 @@
 <head>
   <meta charset="utf-8">
   <title>Szarlotka - przepis</title>
- </head>
+
+  <style>
+    table.przepis { width: 70%; border-collapse: collapse; margin: 10px 0; }
+    table.przepis th, table.przepis td { border: 1px solid #999; padding: 8px; text-     align: center; }
+    table.przepis thead th { background-color: #f0c090; }
+    
+  </style>
+
+</head>
+
 <body>
   <h1>Przepis na <i>szarlotkę</i> domową</h1>
 
-  <img src="szarlotka.png" style="float: right; margin: 500px; width: 300px; margin-top: 1px;">
+<div style="
+    float: left;
+    width: 200px;
+    height: 250px;
+    background-image: url('szarlotka.png');
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+"></div>
+
 
 <div style="
-    position: fixed;        /* przykleja div do ekranu */
-    top: 100px;             /* odległość od góry ekranu */
-    right: 20px;            /* odległość od prawej krawędzi */
-    width: 200px;           /* szerokość boxu */
-    padding: 10px;          /* wewnętrzne odstępy */
-    border: 1px solid #333; /* obramowanie */
-    background-color: #f0f0f0; /* tło */
-    text-align: center;     /* wyśrodkowanie tekstu */
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 220px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
     font-family: 'Arial', sans-serif;
 ">
-<hr>
-<b>---PRZEPIS DNIA---</b><br>
-PRZEPIS NA PIZZE<br>
-6kg mango<br>
-7kg musztardy<br>
-i do pieca 🤣🤣🤣<br>
-<hr>
+    <hr>
+    <b>---PRZEPIS DNIA---</b><br>
+    PRZEPIS NA PIZZE<br>
+    6kg mango<br>
+    7kg musztardy<br>
+    i do pieca 🤣🤣🤣<br>
+    <hr>
 </div>
 
 
-
-
-
-
-
-
+  
   <p><b>Krótki opis:</b> To <i>prosty</i> i pyszny przepis na tradycyjną <u>szarlotkę</u> z jabłkami.</p>
 
   <h2>Składniki</h2>
+
   <p class="small">Poniżej lista potrzebnych składników (ilości podane orientacyjnie):</p>
   <ul class="square">
     <li>Jabłka (najlepiej kwaśne) - ok. 600 g</li>
@@ -48,13 +62,12 @@ i do pieca 🤣🤣🤣<br>
     <li>Jajko - 1 szt.</li>
   </ul>
 
-  <h2>Wykonanie</h2>
+  <h2> <span style="color: green">Wykonanie</span> </h2>
   <p>1) <b>Obierz</b> jabłka i pokrój na plasterki.<br>
   2) Wymieszaj składniki kruchego ciasta, zagnieć i schłódź w lodówce około <span class="large">30</span> minut.<br>
   3) Wyłóż formę ciastem, dodaj jabłka i piecz w 180&deg;C przez 40-50 minut.</p>
 
- <hr style="clear: both;">
-
+  <hr />
 
   <h3>Szybkie wskazówki</h3>
   <p>Użyj <span class="highlight">kwaśnych jabłek</span> — lepiej przełamią słodycz. Cukru dodaj <u>do smaku</u>.</p>
@@ -76,7 +89,7 @@ i do pieca 🤣🤣🤣<br>
   </dl>
 
   <h3>Tabela składników i ilości</h3>
-  <table class="recipe" summary="Tabela składników szarlotki">
+  <table class="przepis" summary="Tabela składników szarlotki">
     <thead>
       <tr>
         <th colspan="3">Składniki i ilości</th>
@@ -104,12 +117,8 @@ i do pieca 🤣🤣🤣<br>
     </tbody>
   </table>
 
-  <p style="font-size:13px;">Przykład zapisu chemicznego w tekście: H<sub>2</sub>O (woda), a obok indeks górny: x<sup>2</sup>.</p>
-
+  
   <p>Jeśli chcesz dowiedzieć się więcej o pieczeniu jabłek, zobacz materiały pomocnicze: <a class="helper" href="https://pl.wikipedia.org/wiki/Szarlotka" target="_blank" rel="noopener">Wikipedia — Szarlotka</a>.</p>
 
-  <footer>
-    <p class="small">Plik: <code>zadanie2.html</code> — Umieść obraz <code>szarlotka.png</code> w tym samym folderze co plik HTML, aby zdjęcie się wyświetliło.</p>
-  </footer>
-</body>
+  </body>
 </html>
