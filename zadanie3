@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Prezentacja mojego zadania – Imię Nazwisko</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 40px;
+}
+
+/* Obraz po lewej z oblewaniem tekstem */
+.grafika-programu {
+    float: left;
+    width: 50%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* sekcje */
+section {
+    margin-top: 50px;
+}
+
+h1, h2 {
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Prezentacja wykonanego zadania — Imię Nazwisko</h1>
+<p>Klasa: XYZ &nbsp;&nbsp;•&nbsp;&nbsp; Rok szkolny: 2024/2025</p>
+
+<img src="FOTO/zrzut_programu.jpg" alt="Zrzut ekranu programu" class="grafika-programu">
+
+<p>
+Powyższa grafika przedstawia zrzut ekranu napisanego przeze mnie programu.  
+Program został wykonany zgodnie z wymaganiami zadania i zawiera komentarz z moimi danymi osobowymi (imię, nazwisko, klasa).  
+W kodzie programu znajdują się objaśnienia działania poszczególnych elementów, a sam zrzut pokazuje finalny efekt działania aplikacji.
+<br><br>
+Tekst automatycznie owija obraz z lewej strony. Grafika zajmuje około połowy szerokości strony, tak aby układ był przejrzysty i czytelny.
+</p>
+
+<div style="clear: both;"></div>
+<section>
+<h2>Materiał audio – moje omówienie zagadnienia</h2>
+
+<p>
+Poniżej znajduje się nagranie głosowe (15–30 sekund), w którym omawiam działanie mojego programu,
+wyjaśniam zastosowane elementy oraz sposób działania aplikacji.
+</p>
+
+<audio controls>
+    <source src="AUDIO/moje_nagranie.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzania audio.
+</audio>
+</section>
+
+<section>
+<h2>Film instruktażowy – wykonanie zadania</h2>
+
+<p>
+Poniższy film (1–2 minuty) prezentuje proces wykonania wybranego zadania związanego z tematem projektu.
+Materiał pokazuje wszystkie etapy działania programu oraz sposób obsługi.
+</p>
+
+<video width="640" controls>
+    <source src="VIDEO/film_instruktaz.mp4" type="video/mp4">
+    Twoja przeglądarka nie obsługuje odtwarzania wideo.
+</video>
+</section>
+
+<section>
+<h2>Materiały pomocnicze</h2>
+
+<p>
+Poniżej znajdują się linki do stron, z których korzystałem podczas przygotowywania zadania:
+</p>
+
+<ul>
+    <li><a href="https://example.com" target="_blank">Przykładowy link do materiałów</a></li>
+    <li><a href="https://example2.com" target="_blank">Dodatkowe źródła</a></li>
+</ul>
+
+</section>
+
+</body>
+</html>
