@@ -1,0 +1,68 @@
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />  
+  <title>[ Tytul dokumentu ]</title>
+</head>
+<body>
+<script language="JavaScript">
+
+function dodawanie() {
+/* Odwołanie do formularza i jego elementów przez nazwę*/
+
+var skl1=parseFloat(document.Form.a.value);
+var skl2=parseFloat(document.Form.b.value);
+var wynik = skl1+skl2;
+alert(wynik);
+}
+function odejmowanie() {
+/* Odwołanie do formularza i jego elementów przez indeks
+Formularz o nazwie jakas_wymyslona_nazwa1 jest drugim formularzem w dokumencie więc ma indeks równy 1
+Pole tekstowe o nazwie jakas_wymyslona_nazwa2 jest pierwszym elementem formularza więc ma indeks równy 0
+*/
+var skl1=parseFloat(document.forms[0].elements[0].value);
+var skl2=parseFloat(document.forms[0].elements[1].value);
+var wynik = skl1-skl2;
+alert(wynik);
+}
+
+function mnozenie() {
+/* Odwołanie do formularza i jego elementów przez indeks
+Formularz o nazwie jakas_wymyslona_nazwa1 jest drugim formularzem w dokumencie więc ma indeks równy 1
+Pole tekstowe o nazwie jakas_wymyslona_nazwa2 jest pierwszym elementem formularza więc ma indeks równy 0
+*/
+var skl1=parseFloat(document.forms[0].elements[0].value);
+var skl2=parseFloat(document.forms[0].elements[1].value);
+var wynik = skl1*skl2;
+alert(wynik);
+}
+
+function dzielenie() {
+/* Odwołanie do formularza i jego elementów przez indeks
+Formularz o nazwie jakas_wymyslona_nazwa1 jest drugim formularzem w dokumencie więc ma indeks równy 1
+Pole tekstowe o nazwie jakas_wymyslona_nazwa2 jest pierwszym elementem formularza więc ma indeks równy 0
+*/
+var skl1=parseFloat(document.forms[0].elements[0].value);
+var skl2=parseFloat(document.forms[0].elements[1].value);
+if(skl2 == 0) alert("Niezdefiniowane") 
+else 
+{
+var wynik = skl1/skl2;
+alert(wynik); }
+}
+
+</script>
+
+<form name="Form">
+a=<input type="Text" name="a"><br>
+b=<input type="Text" name="b"><br>
+<input type="Button" value="+" onclick="dodawanie()">
+<input type="Button" value="-" onclick="odejmowanie()">
+<input type="Button" value="*" onclick="mnozenie()">
+<input type="Button" value="/" onclick="dzielenie()">
+</form>
+<hr>
+
+
+
+</body>
+</html>
