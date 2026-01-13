@@ -1,0 +1,58 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<form>
+    Waga (kg):<br>
+    <input type="number" id="waga"><br><br>
+
+    Wzrost (cm):<br>
+    <input type="number" id="wzrost"><br><br>
+
+    <input type="button" value="Oblicz BMI" onclick="obliczBMI()">
+</form>
+
+<p id="wynik"></p>
+
+<script>
+function obliczBMI() {
+    var waga = document.getElementById("waga").value;
+    var wzrost = document.getElementById("wzrost").value;
+
+    wzrost = wzrost / 100;
+
+    var bmi = waga / (wzrost * wzrost);
+    var opis = "";
+
+    if (bmi < 18.5) {
+        opis = "Niedowaga";
+    } else if (bmi < 25) {
+        opis = "Waga prawidłowa";
+    } else if (bmi < 30) {
+        opis = "Nadwaga";
+    } else {
+        opis = "Otyłość";
+    }
+
+    document.getElementById("wynik").innerHTML =
+        "Twoje BMI: " + bmi.toFixed(2) + "<br>" +
+        "Klasyfikacja: " + opis;
+}
+</script>
+
+
+<label for="rola">Wybierz ulubioną rolę w League of Legends</label>
+<select id="rola" name="rola">
+  <option value="">-- wybierz --</option>
+  <option value="1">TOP</option>
+  <option value="2">Jungle</option>
+  <option value="3">MID</option>
+  <option value="4">ADC</option>
+  <option value="5">Support</option>
+</select>
+
+
+</span>
+</body>
+</html>
