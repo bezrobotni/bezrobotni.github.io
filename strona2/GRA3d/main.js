@@ -170,26 +170,7 @@ function init(){
         } else {
           appendSystemMsg(`<system> unknown debug value: ${val}`);
         }
-      } else {
-        } else if(cmd === 'kirk'){
-        const canvasWrap = document.querySelector('.canvas-wrap');
-        if(canvasWrap){
-          const video = document.createElement('video');
-          video.src = './videos/kirkCommand.mp4';
-          video.style.position = 'absolute';
-          video.style.top = '5%';
-          video.style.left = '5%';
-          video.style.width = '90%';
-          video.style.height = '90%';
-          video.style.objectFit = 'cover';
-          video.autoplay = true;
-          video.muted = false;
-          video.controls = false;
-          video.onended = () => { video.remove(); };
-          canvasWrap.appendChild(video);
-          video.play().catch(e => appendSystemMsg('<system> failed to play video: ' + e.message));
-        } else {
-          appendSystemMsg('<system> canvas wrap not found');
+      
         }
         appendSystemMsg(`<system> unknown command: ${cmd}`);
       }
