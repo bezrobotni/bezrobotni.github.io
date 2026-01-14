@@ -170,8 +170,7 @@ function init(){
         } else {
           appendSystemMsg(`<system> unknown debug value: ${val}`);
         }
-      
-        }
+      } else {
         appendSystemMsg(`<system> unknown command: ${cmd}`);
       }
       chatInput.value = '';
