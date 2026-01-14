@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Mikołaj Sikorski - Strona główna">
+		<title>Mikołaj Sikorski</title>
+		<link rel="stylesheet" href="assets/css/style.css">
+		<style>
+			/* page-specific styling */
+			.header {text-align:center;margin-bottom:30px}
+			.spinning-circle{width:300px;height:300px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,0.12);animation:spin 8s linear infinite;margin:0 auto 30px;overflow:hidden}
+			.circle-text{font-size:24px;font-weight:600;color:var(--accent);text-align:center}
+			@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+			.gif-container{display:flex;gap:24px;justify-content:center;margin-bottom:30px}
+			.gif-box{background:white;border-radius:12px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,0.12);transition:transform .3s}
+			.gif-box:hover{transform:translateY(-6px)}
+			.gif-box img{max-width:240px;border-radius:8px}
+			.buttons-container{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+			.nav-button{padding:12px 20px;background:white;color:var(--accent);border-radius:8px;text-decoration:none;font-weight:600}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+<header class="topbar header">
+			<div class="topbar-inner">
+			<div class="brand">
+				<div class="logo">MS</div>
+				<div class="brand-text">
+					<h1>Mikołaj Sikorski</h1>
+					<div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+				</div>
+				</div>
+			<nav class="nav">
+				<a href="index.html">Home</a>
+				<a href="zadanie1.html">4.1</a>
+				<a href="zadanie2.html">4.2</a>
+				<a href="zadanie3.html">4.3</a>
+				<a href="kalk1.html">kalk1</a>
+				<a href="kalk2.html">kalk2</a>
+				<a href="BMI.html">BMI</a>
+			</nav>
+			<div class="top-actions">
+				<a class="btn" href="games.html">CRAZY</a>
+			</div>
+			</div>
+		</header>
+
+			<div class="spinning-circle">
+				<div class="circle-text">Witam na<br>mojej stronie</div>
+			</div>
+
+			<div class="gif-container">
+				<div class="gif-box">
+					<img src="GIFs/griddyCat.gif" alt="Griddable Cat GIF">
+					<div class="gif-label">Mój ulubiony gif 😻</div>
+				</div>
+				<div class="gif-box">
+					<img src="GIFs/griddyCat.gif" alt="Griddable Cat GIF">
+					<div class="gif-label">i do pieca 🔥</div>
+				</div>
+			</div>
+
+			<div class="buttons-container">
+				<a href="zadanie1.html" class="nav-button">4.1</a>
+				<a href="zadanie2.html" class="nav-button">4.2</a>
+				<a href="zadanie3.html" class="nav-button">4.3</a>
+				<a href="https://bezrobotni.github.io/PlanLekcji/" class="nav-button">plan lekcji</a>
+				<a href="kalk1.html" class="nav-button">kalk1 (skrót od kalkulator1)</a>
+				<a href="kalk2.html" class="nav-button">kalk2 (skrót od kalkulator2)</a>
+				<a href="BMI.html" class="nav-button">BMI</a>
+			</div>
+		</div>
+	</body>
+</html>

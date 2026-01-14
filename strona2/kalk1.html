@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kalkulator — podstawowe operacje</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>.op-row{display:flex;gap:8px;align-items:center;margin-bottom:10px} .result{font-weight:700;margin-left:8px}</style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </div>
+    </header>
+
+    <main class="content card">
+      <section>
+        <h3>Dodawanie</h3>
+        <div class="op-row">
+          <input type="number" id="addA" placeholder="a">
+          <input type="number" id="addB" placeholder="b">
+          <button class="btn" id="addBtn">Oblicz sumę</button>
+          <div class="result" id="addRes"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Odejmowanie</h3>
+        <div class="op-row">
+          <input type="number" id="subA" placeholder="a">
+          <input type="number" id="subB" placeholder="b">
+          <button class="btn" id="subBtn">Oblicz różnicę</button>
+          <div class="result" id="subRes"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Mnożenie</h3>
+        <div class="op-row">
+          <input type="number" id="mulA" placeholder="a">
+          <input type="number" id="mulB" placeholder="b">
+          <button class="btn" id="mulBtn">Oblicz iloczyn</button>
+          <div class="result" id="mulRes"></div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Dzielenie</h3>
+        <div class="op-row">
+          <input type="number" id="divA" placeholder="a">
+          <input type="number" id="divB" placeholder="b">
+          <button class="btn" id="divBtn">Oblicz iloraz</button>
+          <div class="result" id="divRes"></div>
+        </div>
+      </section>
+
+      <script>
+        document.getElementById('addBtn').addEventListener('click',function(){
+          const a=parseFloat(document.getElementById('addA').value||0);
+          const b=parseFloat(document.getElementById('addB').value||0);
+          document.getElementById('addRes').textContent=(a+b);
+        });
+        document.getElementById('subBtn').addEventListener('click',function(){
+          const a=parseFloat(document.getElementById('subA').value||0);
+          const b=parseFloat(document.getElementById('subB').value||0);
+          document.getElementById('subRes').textContent=(a-b);
+        });
+        document.getElementById('mulBtn').addEventListener('click',function(){
+          const a=parseFloat(document.getElementById('mulA').value||0);
+          const b=parseFloat(document.getElementById('mulB').value||0);
+          document.getElementById('mulRes').textContent=(a*b);
+        });
+        document.getElementById('divBtn').addEventListener('click',function(){
+          const a=parseFloat(document.getElementById('divA').value||0);
+          const b=parseFloat(document.getElementById('divB').value);
+          const out=document.getElementById('divRes');
+          if(b===0||!isFinite(b)) out.textContent='Niezdefiniowane'; else out.textContent=(a/b);
+        });
+      </script>
+
+      <footer style="margin-top:16px"><a href="index.html">Powrót na stronę główną</a></footer>
+    </main>
+  </div>
+</body>
+</html>

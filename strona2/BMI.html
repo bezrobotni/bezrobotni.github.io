@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BMI — Kalkulator</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Minor overrides for form layout */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-grid .full{grid-column:1/-1}
+    label{display:block;margin-bottom:6px;font-weight:600}
+    input, select{width:100%;padding:10px;border-radius:6px;border:1px solid #e9ecef}
+    .radios{display:flex;flex-direction:column;gap:6px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </header>
+
+    <main class="content card">
+      <form id="bmiForm">
+        <div class="form-grid">
+          <div>
+            <label for="waga">Waga (kg)</label>
+            <input type="number" id="waga" min="1" max="500" step="0.1" required>
+          </div>
+          <div>
+            <label for="wzrost">Wzrost (cm)</label>
+            <input type="number" id="wzrost" min="50" max="250" step="0.1" required>
+          </div>
+
+          <div class="full">
+            <label for="rola">Wybierz ulubioną rolę w grze League of</label>
+            <select id="rola" name="rola">
+              <option value="">-- wybierz --</option>
+              <option value="TOP">TOP</option>
+              <option value="Jungle">Jungle</option>
+              <option value="MID">MID</option>
+              <option value="ADC">ADC</option>
+              <option value="Support">Support</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label>Zaznacz co Szymon Romaniuk dostał z poprawy z matematyki</label>
+            <div class="radios">
+              <label><input type="radio" name="grade" value="1"> <span style="color:#FF0000;">1</span></label>
+              <label><input type="radio" name="grade" value="2"> <span style="color:#CC3300;">2</span></label>
+              <label><input type="radio" name="grade" value="3"> <span style="color:#996600;">3</span></label>
+              <label><input type="radio" name="grade" value="4"> <span style="color:#669900;">4</span></label>
+              <label><input type="radio" name="grade" value="5"> <span style="color:#33CC00;">5</span></label>
+              <label><input type="radio" name="grade" value="6"> <span style="color:#00FF00;">6</span></label>
+            </div>
+          </div>
+
+          <div class="full" style="display:flex;gap:8px;">
+            <button type="button" class="btn" id="calculate">Oblicz BMI</button>
+            <button type="reset" class="btn" style="background:#6c757d">Wyczyść</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="card" id="wynik" style="margin-top:16px;display:none">
+        <h3>Wynik</h3>
+        <p id="wynikText"></p>
+      </div>
+
+      <script>
+        function obliczBMI() {
+          const waga = parseFloat(document.getElementById('waga').value);
+          const wzrost = parseFloat(document.getElementById('wzrost').value);
+          if(!waga || !wzrost || waga<=0 || wzrost<=0){
+            alert('Podaj prawidłowe wartości wagi i wzrostu.');
+            return;
+          }
+          const wzrostM = wzrost/100;
+          const bmi = waga/(wzrostM*wzrostM);
+          let opis='';
+          if(bmi<18.5)opis='Niedowaga';else if(bmi<25)opis='Waga prawidłowa';else if(bmi<30)opis='Nadwaga';else opis='Otyłość';
+          const wynik = document.getElementById('wynik');
+          document.getElementById('wynikText').innerHTML = 'Twoje BMI: <strong>'+bmi.toFixed(2)+'</strong><br>Klasyfikacja: <strong>'+opis+'</strong>';
+          wynik.style.display='block';
+        }
+        document.getElementById('calculate').addEventListener('click',obliczBMI);
+      </script>
+
+      <footer style="margin-top:18px">&copy; Mikołaj Sikorski</footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kalk2 — kalkulator</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>.ops{display:flex;gap:8px;margin-top:8px}.result{font-weight:700;margin-top:8px}</style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </header>
+
+    <main class="content card">
+      <div>
+        <label for="a">a</label>
+        <input type="number" id="a">
+        <label for="b">b</label>
+        <input type="number" id="b">
+
+        <div class="ops">
+          <button class="btn" id="plus">+</button>
+          <button class="btn" id="minus">-</button>
+          <button class="btn" id="mul">*</button>
+          <button class="btn" id="div">/</button>
+        </div>
+
+        <div class="result" id="res">Wynik: —</div>
+      </div>
+
+      <script>
+        function read(){return{a:parseFloat(document.getElementById('a').value||0),b:parseFloat(document.getElementById('b').value||0)}}
+        document.getElementById('plus').addEventListener('click',function(e){e.preventDefault();const v=read();document.getElementById('res').textContent='Wynik: '+(v.a+v.b)});
+        document.getElementById('minus').addEventListener('click',function(e){e.preventDefault();const v=read();document.getElementById('res').textContent='Wynik: '+(v.a-v.b)});
+        document.getElementById('mul').addEventListener('click',function(e){e.preventDefault();const v=read();document.getElementById('res').textContent='Wynik: '+(v.a*v.b)});
+        document.getElementById('div').addEventListener('click',function(e){e.preventDefault();const v=read();document.getElementById('res').textContent=(v.b===0? 'Wynik: Niezdefiniowane' : 'Wynik: '+(v.a/v.b))});
+      </script>
+
+      <footer style="margin-top:12px"><a href="index.html">Powrót na stronę główną</a></footer>
+    </main>
+  </div>
+</body>
+</html>

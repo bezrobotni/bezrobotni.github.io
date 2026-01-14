@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Algorytm Bogosort</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </header>
+
+    <main class="content card">
+      <div style="display:flex;gap:20px;align-items:flex-start;">
+        <img src="images/bogoSort.png" alt="Zrzut ekranu programu" style="width:48%;border-radius:8px;object-fit:cover">
+        <div>
+          <p>Bogosort to skrajnie nieefektywny algorytm sortowania, który działa w sposób całkowicie losowy. Polega na tym, że najpierw sprawdza, czy lista elementów jest już posortowana, a jeśli nie, losowo miesza jej elementy i ponownie sprawdza porządek. Proces ten powtarza się aż do momentu, gdy elementy znajdą się w odpowiedniej kolejności. Ze względu na całkowity brak strategii i zależność od przypadkowego ułożenia elementów, czas działania bogosortu jest nieprzewidywalny i może być ekstremalnie długi, rosnąc silniowo wraz ze wzrostem liczby elementów. W praktyce algorytm nie nadaje się do żadnych realnych zastosowań i jest traktowany głównie jako ciekawostka lub przykład tego, jak nie sortować danych.</p>
+        </div>
+      </div>
+
+      <section style="margin-top:18px">
+        <h2>Materiał audio</h2>
+        <p>Nagranie opisujące działanie programu:</p>
+        <audio controls>
+          <source src="audio/bogoSort.wav" type="audio/wav">
+          Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+      </section>
+
+      <section>
+        <h2>Filmik</h2>
+        <p>Materiał video pokazujący działanie programu:</p>
+        <video width="640" controls>
+          <source src="videos/bogoSort.mp4" type="video/mp4">
+          Twoja przeglądarka nie obsługuje elementu video.
+        </video>
+      </section>
+
+      <section>
+        <h2>Materiały pomocnicze</h2>
+        <ul>
+          <li><a href="https://pl.wikipedia.org/wiki/Bogosort" target="_blank" rel="noopener">Bogosort — Wikipedia</a></li>
+          <li><a href="https://pl.wikipedia.org/wiki/Sortowanie_b%C4%85belkowe" target="_blank" rel="noopener">Sortowanie bąbelkowe — Wikipedia</a></li>
+        </ul>
+      </section>
+
+      <footer>
+        <p><a class="btn" href="index.html">Powrót na stronę główną</a></p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TETRIS — Gra</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .tetris-wrap{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+    #tetris-canvas{background:#071026;border-radius:8px;border:2px solid rgba(255,255,255,0.03)}
+    .tetris-info{color:var(--muted)}
+    .controls{display:flex;gap:8px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header"><div class="topbar-inner"><div class="brand"><div class="logo">MS</div><div class="brand-text"><h1>TETRIS</h1><div class="small-muted">Steruj: ← →, Z - obrót, Spacja - upadek</div></div></div><nav class="nav"><a href="index.html">Home</a></nav><div class="top-actions"><a class="btn" href="games.html">Powrót</a></div></div></header>
+
+    <main class="content">
+      <section class="card game-card">
+        <div class="tetris-wrap">
+          <canvas id="tetris-canvas" width="240" height="480" tabindex="0" aria-label="Tetris"></canvas>
+          <div>
+            <div class="tetris-info">
+              <h3>Instrukcje</h3>
+              <ul>
+                <li>← / → — porusz</li>
+                <li>Z — obrót</li>
+                <li>Spacja — szybko w dół</li>
+              </ul>
+              <div class="scoreboard">Wynik: <span id="tetris-score">0</span> &nbsp; Najlepszy: <span id="tetris-best">0</span></div>
+              <div class="controls"><button id="tetris-start" class="btn">Start</button><button id="tetris-pause" class="btn">Pauza</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/tetris.js"></script>
+</body>
+</html>

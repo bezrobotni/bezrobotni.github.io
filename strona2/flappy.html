@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FLAPPY BIRD — Gra</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .flappy-wrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    #flappy-canvas{background:linear-gradient(#70c5ce,#5aa7bb);border-radius:8px;border:2px solid rgba(255,255,255,0.03)}
+    .flappy-info{color:var(--muted)}
+    .controls{display:flex;gap:8px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header"><div class="topbar-inner"><div class="brand"><div class="logo">MS</div><div class="brand-text"><h1>FLAPPY BIRD</h1><div class="small-muted">Steruj: Spacja / Klik</div></div></div><nav class="nav"><a href="index.html">Home</a></nav><div class="top-actions"><a class="btn" href="games.html">Powrót</a></div></div></header>
+
+    <main class="content">
+      <section class="card game-card">
+        <div class="flappy-wrap">
+          <canvas id="flappy-canvas" width="480" height="320" tabindex="0" aria-label="Flappy Bird"></canvas>
+          <div>
+            <div class="flappy-info">
+              <h3>Instrukcje</h3>
+              <p>Naciśnij Spację lub kliknij, aby podskoczyć. Omijaj rury.</p>
+              <div class="scoreboard">Wynik: <span id="flappy-score">0</span> &nbsp; Najlepszy: <span id="flappy-best">0</span></div>
+              <div class="controls"><button id="flappy-start" class="btn">Start</button><button id="flappy-pause" class="btn">Pauza</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/flappy.js"></script>
+</body>
+</html>

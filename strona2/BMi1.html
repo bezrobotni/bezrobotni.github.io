@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BMI Calculator — Profesjonalny kalkulator</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Keep compact professional look similar to original design */
+    body{background:transparent}
+    .container{padding:32px;max-width:560px}
+    .logo{font-size:28px}
+    .input-hint{color:#95a5a6}
+    .button-group{display:flex;gap:10px;margin-top:18px}
+    button{padding:12px;border-radius:8px;border:none}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-secondary{background:#ecf0f1}
+    .results{margin-top:20px;display:none}
+    .results.active{display:block}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </div>
+    </header>
+
+    <form id="bmiForm" onsubmit="return obliczBMI(event)">
+      <div class="form-group">
+        <label for="waga">Waga</label>
+        <input type="number" id="waga" placeholder="np. 75" min="1" max="500" step="0.1" required>
+        <div class="input-hint">Podaj wagę w kilogramach (kg)</div>
+      </div>
+
+      <div class="form-group">
+        <label for="wzrost">Wzrost</label>
+        <input type="number" id="wzrost" placeholder="np. 180" min="50" max="250" step="0.1" required>
+        <div class="input-hint">Podaj wzrost w centymetrach (cm)</div>
+      </div>
+
+      <div class="error" id="error"></div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-primary">Oblicz BMI</button>
+        <button type="reset" class="btn-secondary">Wyczyść</button>
+      </div>
+    </form>
+
+    <div class="results" id="wynik">
+      <div style="text-align:center;margin-top:16px">
+        <div id="bmiValue" style="font-size:34px;font-weight:700">--</div>
+        <div id="bmiCategory" style="margin-top:8px"></div>
+      </div>
+
+      <div class="bmi-info" style="margin-top:16px">
+        <div class="info-row"><span class="info-label">Waga:</span> <span id="displayWaga">--</span></div>
+        <div class="info-row"><span class="info-label">Wzrost:</span> <span id="displayWzrost">--</span></div>
+        <div class="info-row"><span class="info-label">Kategoria:</span> <span id="displayOpis">--</span></div>
+      </div>
+    </div>
+
+    <script>
+      function obliczBMI(event){
+        event && event.preventDefault();
+        const waga=parseFloat(document.getElementById('waga').value);
+        const wzrost=parseFloat(document.getElementById('wzrost').value);
+        const errorElement=document.getElementById('error');
+        const wynikElement=document.getElementById('wynik');
+        if(!waga||!wzrost||waga<=0||wzrost<=0){errorElement.textContent='Proszę podać prawidłowe wartości wagi i wzrostu.';errorElement.classList.add('show');wynikElement.classList.remove('active');return false}
+        if(waga>500||wzrost>250){errorElement.textContent='Podane wartości są zbyt duże.';errorElement.classList.add('show');wynikElement.classList.remove('active');return false}
+        errorElement.classList.remove('show');
+        const wzrostM=wzrost/100;const bmi=waga/(wzrostM*wzrostM);let opis='';let cls='';
+        if(bmi<18.5){opis='Niedowaga';cls='category-underweight'}else if(bmi<25){opis='Waga prawidłowa';cls='category-normal'}else if(bmi<30){opis='Nadwaga';cls='category-overweight'}else{opis='Otyłość';cls='category-obese'}
+        document.getElementById('bmiValue').textContent=bmi.toFixed(1);
+        const cat=document.getElementById('bmiCategory');cat.textContent=opis;cat.className='bmi-category '+cls;
+        document.getElementById('displayWaga').textContent=waga+' kg';document.getElementById('displayWzrost').textContent=wzrost+' cm';document.getElementById('displayOpis').textContent=opis;
+        wynikElement.classList.add('active');return false
+      }
+      document.getElementById('bmiForm').addEventListener('keypress',function(e){if(e.key==='Enter'){obliczBMI(e)}})
+    </script>
+  </div>
+</body>
+</html>

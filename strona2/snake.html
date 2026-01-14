@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Snake — Gra</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="topbar header">
+      <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">MS</div>
+        <div class="brand-text">
+          <h1>Mikołaj Sikorski</h1>
+          <div class="small-muted">Strona demonstracyjna — profesjonalna wersja</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="zadanie1.html">4.1</a>
+        <a href="zadanie2.html">4.2</a>
+        <a href="zadanie3.html">4.3</a>
+        <a href="kalk1.html">kalk1</a>
+        <a href="kalk2.html">kalk2</a>
+        <a href="BMI.html">BMI</a>
+      </nav>
+      <div class="top-actions">
+        <a class="btn" href="games.html">CRAZY</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="card game-card">
+        <div>
+          <h2>Snake</h2>
+          <p class="hero-sub">Użyj strzałek, Spacja — pauza/wznów, F2 — restart i start</p>
+          <div class="scoreboard">Score: <span id="snake-score">0</span></div>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="snake-canvas" width="480" height="480" tabindex="0" aria-label="Gra Snake"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="assets/js/snake.js"></script>
+</body>
+</html>
