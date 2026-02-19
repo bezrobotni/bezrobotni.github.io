@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>GRA3d — Placeholder</title>
   <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- import map so jsm loader modules can resolve "three" specifier -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="container">

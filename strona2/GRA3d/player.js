@@ -13,6 +13,9 @@ export default class Player{
     this.hp = 100;
     this.xp = 0;
 
+    // noclip state (when true, gravity and collisions are ignored)
+    this.noclip = false;
+
     // simple collision volume (sphere)
     this.radius = 0.35;
 
@@ -20,7 +23,7 @@ export default class Player{
     this.position = new THREE.Vector3().copy(camera.position);
 
     // Bind movement keys
-    this.keys = {w:false,a:false,s:false,d:false,space:false};
+    this.keys = {w:false,a:false,s:false,d:false,space:false,shift:false};
     window.addEventListener('keydown',(e)=>this.onKey(e,true));
     window.addEventListener('keyup',(e)=>this.onKey(e,false));
   }
@@ -34,6 +37,7 @@ export default class Player{
     if(k==='s') this.keys.s = down;
     if(k==='d') this.keys.d = down;
     if(k===' ') this.keys.space = down;
+    if(k==='shift') this.keys.shift = down;
   }
 
   addXP(v){ this.xp += v; }
@@ -82,23 +86,38 @@ export default class Player{
     this.vel.x = desiredVel.x; this.vel.z = desiredVel.z;
 
     // gravity & jump
-    if(this.onGround && this.keys.space){ this.vel.y = this.jumpSpeed; this.onGround=false; }
-    this.vel.y += this.gravity * dt;
-
-    // integrate
-    const newPos = this.position.clone().add(this.vel.clone().multiplyScalar(dt));
-
-    // naive ground collision at y=0
-    if(newPos.y <= 1.6){ newPos.y = 1.6; this.vel.y = 0; this.onGround = true; }
-
-    // world collision check
-    const collided = this.checkCollisions(newPos);
-    if(!collided){
+    if(this.noclip){
+      // when noclipping vertical movement controlled explicitly
+      if(this.keys.space){
+        this.vel.y = this.jumpSpeed;
+      } else if(this.keys.shift){
+        this.vel.y = -this.jumpSpeed;
+      } else {
+        this.vel.y = 0;
+      }
+      // simple integration with no gravity or collisions
+      const newPos = this.position.clone().add(this.vel.clone().multiplyScalar(dt));
       this.position.copy(newPos);
       this.camera.position.copy(this.position);
     } else {
-      // if collided, zero horizontal velocities
-      this.vel.x = 0; this.vel.z = 0;
+      if(this.onGround && this.keys.space){ this.vel.y = this.jumpSpeed; this.onGround=false; }
+      this.vel.y += this.gravity * dt;
+
+      // integrate
+      const newPos = this.position.clone().add(this.vel.clone().multiplyScalar(dt));
+
+      // naive ground collision at y=0
+      if(newPos.y <= 1.6){ newPos.y = 1.6; this.vel.y = 0; this.onGround = true; }
+
+      // world collision check
+      const collided = this.checkCollisions(newPos);
+      if(!collided){
+        this.position.copy(newPos);
+        this.camera.position.copy(this.position);
+      } else {
+        // if collided, zero horizontal velocities
+        this.vel.x = 0; this.vel.z = 0;
+      }
     }
   }
 }

@@ -12,6 +12,9 @@ let clock = new THREE.Clock();
 let raycaster = new THREE.Raycaster();
 const canvas = document.getElementById('game-canvas');
 
+// scene tracking (1 by default)
+let currentScene = 1;
+
 // HUD elements
 const hpEl = document.getElementById('hp-val');
 const xpEl = document.getElementById('xp-val');
@@ -71,15 +74,17 @@ function init(){
   scene.add(amb);
 
   // World (ground, obstacles)
-  createWorld(scene);
+  createWorld(scene, currentScene);
 
-  // Debug cube to verify rendering (temporary)
-  const dbgGeo = new THREE.BoxGeometry(0.6,0.6,0.6);
-  const dbgMat = new THREE.MeshStandardMaterial({color:0xffcc00, emissive:0x220000, metalness:0.2, roughness:0.6});
-  const dbg = new THREE.Mesh(dbgGeo, dbgMat);
-  dbg.position.set(0, 1.6, 0);
-  dbg.castShadow = true; dbg.receiveShadow = true;
-  scene.add(dbg);
+  // Debug cube to verify rendering (temporary) – only in scene 1
+  if(currentScene === 1){
+    const dbgGeo = new THREE.BoxGeometry(0.6,0.6,0.6);
+    const dbgMat = new THREE.MeshStandardMaterial({color:0xffcc00, emissive:0x220000, metalness:0.2, roughness:0.6});
+    const dbg = new THREE.Mesh(dbgGeo, dbgMat);
+    dbg.position.set(0, 1.6, 0);
+    dbg.castShadow = true; dbg.receiveShadow = true;
+    scene.add(dbg);
+  }
 
   // Player
   player = new Player(camera, scene);
@@ -125,6 +130,47 @@ function init(){
 
   animate();
 
+  // expose scene state for debugging
+  if(window.__GRA3d){ window.__GRA3d.currentScene = currentScene; }
+
+  // helper to create a fresh scene for a given index
+  function makeScene(num){
+    const sc = new THREE.Scene();
+    sc.background = new THREE.Color(0x071026);
+    // duplicate lights from init
+    const dir = new THREE.DirectionalLight(0xffffff, 1.2);
+    dir.position.set(5, 10, 7);
+    dir.castShadow = true;
+    dir.shadow.mapSize.set(1024,1024);
+    dir.shadow.camera.near = 0.5; dir.shadow.camera.far = 50;
+    sc.add(dir);
+    const amb = new THREE.AmbientLight(0xffffff,1.0);
+    sc.add(amb);
+    createWorld(sc, num);
+    // debug cube (only for scene 1)
+    if(num === 1){
+      const dbgGeo2 = new THREE.BoxGeometry(0.6,0.6,0.6);
+      const dbgMat2 = new THREE.MeshStandardMaterial({color:0xffcc00, emissive:0x220000, metalness:0.2, roughness:0.6});
+      const dbg2 = new THREE.Mesh(dbgGeo2, dbgMat2);
+      dbg2.position.set(0, 1.6, 0);
+      dbg2.castShadow = true; dbg2.receiveShadow = true;
+      sc.add(dbg2);
+    }
+    return sc;
+  }
+
+  function switchScene(num){
+    currentScene = num;
+    scene = makeScene(num);
+    if(player){
+      player.scene = scene;
+      player.position.set(0,1.6,0);
+      player.vel.set(0,0,0);
+      camera.position.copy(player.position);
+    }
+    if(window.__GRA3d){ window.__GRA3d.scene = scene; window.__GRA3d.currentScene = currentScene; }
+  }
+
   // --- Chat functions ---
   function openChat(){
     if(!chatBox || !chatInput) return;
@@ -169,6 +215,37 @@ function init(){
           appendSystemMsg('<system> debug=off');
         } else {
           appendSystemMsg(`<system> unknown debug value: ${val}`);
+        }
+      } else if(cmd === 'noclip'){
+        if(player){
+          player.noclip = !player.noclip;
+          appendSystemMsg(`<system> noclip=${player.noclip ? 'on' : 'off'}`);
+        } else {
+          appendSystemMsg('<system> noclip command received before player initialized');
+        }
+      } else if(cmd.startsWith('noclip=')){
+        const val = cmd.split('=')[1];
+        if(player){
+          if(val === 'on'){
+            player.noclip = true;
+            appendSystemMsg('<system> noclip=on');
+          } else if(val === 'off'){
+            player.noclip = false;
+            appendSystemMsg('<system> noclip=off');
+          } else {
+            appendSystemMsg(`<system> unknown noclip value: ${val}`);
+          }
+        } else {
+          appendSystemMsg('<system> noclip command received before player initialized');
+        }
+      } else if(cmd.startsWith('scene=')){
+        const val = cmd.split('=')[1];
+        const n = parseInt(val,10);
+        if(!isNaN(n) && (n === 1 || n === 2)){
+          switchScene(n);
+          appendSystemMsg(`<system> scene=${n}`);
+        } else {
+          appendSystemMsg(`<system> unknown scene value: ${val}`);
         }
       } else {
         appendSystemMsg(`<system> unknown command: ${cmd}`);
