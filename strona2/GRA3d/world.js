@@ -1,7 +1,9 @@
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 import { OBJLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/OBJLoader.js';
+import { FBXLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
 
 export function createWorld(scene, sceneId = 1){
+  const mixers = []; // store AnimationMixers for animate loop
   // sceneId 1: default world (ground + sky)
   // sceneId 2: empty world (only sky)
 
@@ -78,5 +80,46 @@ export function createWorld(scene, sceneId = 1){
         console.warn('failed to load cyganbody obj', err2);
       });
     });
+
+    // Load FBX model with animation at position (2, 0, 0)
+    const fbxPath = base + 'animations/cyganTwerk.fbx';
+    const fbxLoader = new FBXLoader();
+    fbxLoader.load(fbxPath, fbxModel => {
+      fbxModel.position.set(2, 0, 0);
+      fbxModel.scale.set(1.5, 1.5, 1.5); // same scale as OBJ model
+      
+      // Apply texture to FBX model
+      textureLoader.load(texPath, texture => {
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        fbxModel.traverse(c => {
+          if(c.isMesh) {
+            c.castShadow = true;
+            c.receiveShadow = true;
+            if(c.material) {
+              c.material.map = texture;
+              c.material.needsUpdate = true;
+            }
+          }
+        });
+      });
+      
+      scene.add(fbxModel);
+      
+      // Setup animation mixer
+      const mixer = new THREE.AnimationMixer(fbxModel);
+      if(fbxModel.animations && fbxModel.animations.length > 0) {
+        // Play first animation in loop
+        const action = mixer.clipAction(fbxModel.animations[0]);
+        action.loop = THREE.LoopRepeat;
+        action.clampWhenFinished = false;
+        action.play();
+        mixers.push(mixer);
+      }
+    }, undefined, err => {
+      console.warn('failed to load FBX animation', err);
+    });
   }
+
+  // Return mixers for the main animate loop
+  return { mixers };
 }

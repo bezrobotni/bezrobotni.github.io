@@ -10,6 +10,7 @@ let scene, camera, renderer;
 let player;
 let clock = new THREE.Clock();
 let raycaster = new THREE.Raycaster();
+let animationMixers = []; // store AnimationMixers for FBX animations
 const canvas = document.getElementById('game-canvas');
 
 // scene tracking (1 by default)
@@ -74,7 +75,10 @@ function init(){
   scene.add(amb);
 
   // World (ground, obstacles)
-  createWorld(scene, currentScene);
+  const worldResult = createWorld(scene, currentScene);
+  if(worldResult && worldResult.mixers) {
+    animationMixers = worldResult.mixers;
+  }
 
   // Debug cube to verify rendering (temporary) – only in scene 1
   if(currentScene === 1){
@@ -146,7 +150,11 @@ function init(){
     sc.add(dir);
     const amb = new THREE.AmbientLight(0xffffff,1.0);
     sc.add(amb);
-    createWorld(sc, num);
+    const worldResult = createWorld(sc, num);
+    let newMixers = [];
+    if(worldResult && worldResult.mixers) {
+      newMixers = worldResult.mixers;
+    }
     // debug cube (only for scene 1)
     if(num === 1){
       const dbgGeo2 = new THREE.BoxGeometry(0.6,0.6,0.6);
@@ -156,12 +164,14 @@ function init(){
       dbg2.castShadow = true; dbg2.receiveShadow = true;
       sc.add(dbg2);
     }
-    return sc;
+    return { scene: sc, mixers: newMixers };
   }
 
   function switchScene(num){
     currentScene = num;
-    scene = makeScene(num);
+    const sceneData = makeScene(num);
+    scene = sceneData.scene;
+    animationMixers = sceneData.mixers;
     if(player){
       player.scene = scene;
       player.position.set(0,1.6,0);
@@ -315,6 +325,10 @@ function animate(){
   requestAnimationFrame(animate);
   const dt = Math.min(0.05, clock.getDelta());
   update(dt);
+  // Update animation mixers
+  for(let mixer of animationMixers) {
+    mixer.update(dt);
+  }
   renderer.render(scene, camera);
 }
 
