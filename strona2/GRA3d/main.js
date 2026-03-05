@@ -210,8 +210,8 @@ function init(){
   function sendChatMessage(){
     const v = chatInput && chatInput.value ? chatInput.value.trim() : '';
     if(!v) return;
-    // Commands start with $
-    if(v.startsWith('$')){
+    // Commands start with $ or .
+    if(v.startsWith('$') || v.startsWith('.')){
       const cmd = v.slice(1).trim().toLowerCase();
       if(cmd.startsWith('debug=')){
         const val = cmd.split('=')[1];
@@ -251,12 +251,18 @@ function init(){
       } else if(cmd.startsWith('scene=')){
         const val = cmd.split('=')[1];
         const n = parseInt(val,10);
-        if(!isNaN(n) && (n === 1 || n === 2)){
+        if(!isNaN(n) && (n === 1 || n === 2 || n === 3)){
           switchScene(n);
           appendSystemMsg(`<system> scene=${n}`);
         } else {
           appendSystemMsg(`<system> unknown scene value: ${val}`);
         }
+      } else if(cmd === 'help'){
+        appendSystemMsg('<system> Available commands (use $ or . prefix):');
+        appendSystemMsg('<system> debug=on/off - Toggle debug mode');
+        appendSystemMsg('<system> noclip or noclip=on/off - Toggle noclip mode');
+        appendSystemMsg('<system> scene=1/2/3 - Switch scene');
+        appendSystemMsg('<system> help - Show this help');
       } else {
         appendSystemMsg(`<system> unknown command: ${cmd}`);
       }

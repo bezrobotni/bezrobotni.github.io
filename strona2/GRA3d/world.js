@@ -120,6 +120,36 @@ export function createWorld(scene, sceneId = 1){
     });
   }
 
+  // scene 3: load the abandoned house FBX model
+  if(sceneId === 3){
+    const fbxPath = '3d models/abandonedHouse/cottage_fbx.fbx';
+    const fbxLoader = new FBXLoader();
+    fbxLoader.load(fbxPath, fbxModel => {
+      console.log('Loaded cottage FBX model:', fbxModel);
+      fbxModel.position.set(0, 0, -5); // position in front of camera
+      fbxModel.scale.set(0.01, 0.01, 0.01); // 10x smaller
+      fbxModel.traverse(c => {
+        if(c.isMesh) {
+          c.castShadow = true;
+          c.receiveShadow = true;
+          // Ensure material is properly set
+          if(c.material) {
+            if(Array.isArray(c.material)) {
+              c.material.forEach(mat => {
+                mat.needsUpdate = true;
+              });
+            } else {
+              c.material.needsUpdate = true;
+            }
+          }
+        }
+      });
+      scene.add(fbxModel);
+    }, undefined, err => {
+      console.warn('failed to load cottage FBX', err);
+    });
+  }
+
   // Return mixers for the main animate loop
   return { mixers };
 }
